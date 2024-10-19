@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Pellet : MonoBehaviour
 {
-    private float speed = 1f;
-
-    private void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        GameObject other = collision.collider.gameObject;
+
+        if (other.CompareTag("Monster"))
+        {
+            Debug.Log("Enemy Hit!");
+            // Do Damage
+            other.GetComponent<EnemyScript>().TakeDamage(4);
+        }
     }
 }

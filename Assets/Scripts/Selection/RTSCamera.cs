@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class RTSCamera : MonoBehaviour
 {
-    public RTSSelection selection;
+    public UnitSelection selection;
 
     public float moveSpeed = 10f;
     public float rotateSensitivity = 200f;
@@ -23,13 +23,13 @@ public class RTSCamera : MonoBehaviour
                 return;
 
             // Different modes (Default, additive, subtractive)
-            RTSSelection.SelectionModifier mode = RTSSelection.SelectionModifier.Default;
+            UnitSelection.SelectionModifier mode = UnitSelection.SelectionModifier.Default;
 
             if (Input.GetKey(KeyCode.LeftShift))
-                mode = RTSSelection.SelectionModifier.Additive;
+                mode = UnitSelection.SelectionModifier.Additive;
             else
             if (Input.GetKey(KeyCode.LeftControl))
-                mode = RTSSelection.SelectionModifier.Subtractive;
+                mode = UnitSelection.SelectionModifier.Subtractive;
 
             selection.BeginSelection(mode);
         }
