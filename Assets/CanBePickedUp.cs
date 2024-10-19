@@ -10,6 +10,8 @@ public class CanBePickedUp : MonoBehaviour
     private Rigidbody thisRigidbody;
     private Collider thisCollider;
 
+    [SerializeField] private List<Collider> otherColliders;
+
     void Awake()
     {
         m_Camera = Camera.main;
@@ -27,18 +29,28 @@ public class CanBePickedUp : MonoBehaviour
 
     public void pickup()
     {
-        thisRigidbody.freezeRotation = true;
+        //thisRigidbody.freezeRotation = true;
         thisRigidbody.useGravity = false;
         thisCollider.enabled = false;
         isBeingPickedUp = true;
+
+        foreach(Collider otherCollider in otherColliders)
+        {
+            otherCollider.enabled = false;
+        }
     }
 
     public void release()
     {
-        thisRigidbody.freezeRotation = false;
+        //thisRigidbody.freezeRotation = false;
         thisRigidbody.useGravity = true;
         thisCollider.enabled = true;
         isBeingPickedUp = false;
+
+        foreach(Collider otherCollider in otherColliders)
+        {
+            otherCollider.enabled = true;
+        }
 
     }
 }
