@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Pellet : MonoBehaviour
 {
+    private void Start()
+    {
+        Destroy(gameObject, 5);
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.collider.gameObject;

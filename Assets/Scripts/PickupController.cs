@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +10,16 @@ public class PickupController : MonoBehaviour
     private bool hasObject = false;
     private CanBePickedUp carriedGameObject = null;
 
+    private AudioSource speaker;
+    public AudioClip[] rotateSFX;
+    public AudioClip[] pickupSFX;
+
     public bool canCarryObjects = true;
     private bool movementLock = false;
     void Awake()
     {
         m_Camera = Camera.main;
+        speaker = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -29,8 +35,12 @@ public class PickupController : MonoBehaviour
             }
         }
 
+
         if (Input.GetMouseButtonDown(0) && !hasObject && canCarryObjects)
         {
+            AudioClip randomClip = pickupSFX[Random.Range(0, pickupSFX.Length)];
+            speaker.PlayOneShot(randomClip);
+
             Vector3 mousePosition = Input.mousePosition;
             Ray ray = m_Camera.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
@@ -83,6 +93,9 @@ public class PickupController : MonoBehaviour
 
             if ( (Input.GetMouseButtonDown(0) || !canCarryObjects) && hasObject)
             {
+                AudioClip randomClip = pickupSFX[Random.Range(0, pickupSFX.Length)];
+                speaker.PlayOneShot(randomClip);
+
                 carriedGameObject.release();
                 hasObject = false;
                 carriedGameObject = null;
@@ -92,6 +105,9 @@ public class PickupController : MonoBehaviour
 
     private void rotateObject(float degrees)
     {
+        AudioClip randomClip = rotateSFX[Random.Range(0, rotateSFX.Length)];
+        speaker.PlayOneShot(randomClip);
+
         if (carriedGameObject.rotateAboutSlopeAxis)
         {
             if (carriedGameObject.transform.eulerAngles.z % 45 > 1 && carriedGameObject.transform.eulerAngles.z % 45 < 44)
