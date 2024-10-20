@@ -21,6 +21,7 @@ public class EnemyUnit : MonoBehaviour
     public bool walkPointSet;
 
     // States
+    public WaveManager waveManager;
     public GameObject[] unitObjects;
     public LayerMask unitLayer;
 
@@ -31,6 +32,7 @@ public class EnemyUnit : MonoBehaviour
 
     private void Awake()
     {
+        waveManager = FindObjectOfType<WaveManager>();
         destinationSetter = GetComponent<AIDestinationSetter>();
         Material randomMaterial = dudeMaterials[Random.Range(0, dudeMaterials.Length)];
         dudePaper.material = randomMaterial;
@@ -114,7 +116,7 @@ public class EnemyUnit : MonoBehaviour
     private void Death()
     {
         Instantiate(deathVFX, transform.position, transform.rotation);
-
+        waveManager.removeEnemy(gameObject);
         Destroy(gameObject);
     }
 }

@@ -10,6 +10,11 @@ public class WaveManager : MonoBehaviour
 
     public List<Transform> spawnPoints;
 
+    private AudioManager theAM;
+
+    public AudioClip waveMusic;
+    public AudioClip buildMusic;
+
     private float spawnTimer = 0;
     private int numEnemiesSpawnedThisWave = 0;
 
@@ -18,6 +23,7 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        theAM = FindObjectOfType<AudioManager>();
         pickupController.canCarryObjects = true;
 
 
@@ -61,16 +67,21 @@ public class WaveManager : MonoBehaviour
             waves.RemoveAt(0);
             isBuildMode = true;
             pickupController.canCarryObjects = true;
-
+            theAM.ChangeBGM(buildMusic);
         }
     }
 
     void beginNextWave()
     {
-        numEnemiesSpawnedThisWave = 0;
-
-
-        
-        
+        //play the wave music
+        if (waveMusic != null)
+        {
+            theAM.ChangeBGM(waveMusic);
+            numEnemiesSpawnedThisWave = 0;
+        }
     }
-}
+    public void removeEnemy(GameObject oldEnemy)
+    {
+        enemiesRemaining.Remove(oldEnemy);
+    }
+  }

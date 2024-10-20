@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Pellet : MonoBehaviour
 {
+    public int pelletDamage = 4;
+    public float pelletLifetime = 5;
+
+    void Start()
+    {
+        Destroy(gameObject, pelletLifetime);
+    }
     void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.collider.gameObject;
@@ -12,7 +19,8 @@ public class Pellet : MonoBehaviour
         {
             Debug.Log("Enemy Hit!");
             // Do Damage
-            other.GetComponent<EnemyUnit>().TakeDamage(4);
+            other.GetComponent<EnemyUnit>().TakeDamage(pelletDamage);
         }
     }
+    
 }
