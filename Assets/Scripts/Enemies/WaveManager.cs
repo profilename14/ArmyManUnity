@@ -32,7 +32,7 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Semicolon) && isBuildMode)
+        if (Input.GetKeyDown(KeyCode.Space) && isBuildMode)
         {
             isBuildMode = false;
             pickupController.canCarryObjects = false;

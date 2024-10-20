@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3419685203028137918}
   m_Layer: 6
   m_Name: SlopeWoodBlock2x2x2
-  m_TagString: Untagged
+  m_TagString: CanBePickedUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
