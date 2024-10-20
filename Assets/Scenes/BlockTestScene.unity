@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 827239407}
   - component: {fileID: 827239406}
   - component: {fileID: 827239405}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,10 +627,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 312718433161416348, guid: 0c11a93995e0f7a48b786aff5fa2bb46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4572771461160139840, guid: 0c11a93995e0f7a48b786aff5fa2bb46,
         type: 3}
       propertyPath: m_Name
       value: WoodBlock2x2x2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572771461160139840, guid: 0c11a93995e0f7a48b786aff5fa2bb46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5468907709788175708, guid: 0c11a93995e0f7a48b786aff5fa2bb46,
         type: 3}
@@ -681,6 +691,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780669220643862085, guid: 0c11a93995e0f7a48b786aff5fa2bb46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -785,6 +800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesRemaining: []
+  waves: []
+  spawnPoints: []
   isBuildMode: 1
   pickupController: {fileID: 1535057931}
 --- !u!4 &1424414653
