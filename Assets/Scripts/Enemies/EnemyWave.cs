@@ -9,4 +9,5 @@ public class EnemyWave
     //public float waveDelay = 10; // How many seconds after the last wave this should start.
     public float spawnCooldown; // How many seconds should the manager wait between spawning an enemy;
     public int numberOfEnemies; // How many enemies should be spawned.
+    public List<GameObject> rewards; // enable these at the end of the wave
 }
