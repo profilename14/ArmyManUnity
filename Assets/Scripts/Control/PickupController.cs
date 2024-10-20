@@ -21,9 +21,10 @@ public class PickupController : MonoBehaviour
             {
                 print(hit);
                 GameObject hitGameObject = hit.transform.gameObject;
-                if (hitGameObject.tag == "CanBePickedUp" && !hasObject)
+                CanBePickedUp hitCarriable = hitGameObject.GetComponent<CanBePickedUp>();
+                if (hitCarriable != null && !hasObject)
                 {
-                    carriedGameObject = hitGameObject.GetComponent<CanBePickedUp>();
+                    carriedGameObject = hitCarriable;
                     hasObject = true;
                     carriedGameObject.pickup(); // Disables stuff like hitboxes and rotation
                     print("Now carrying " + hitGameObject);
