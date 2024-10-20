@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3676805918514168801}
   - component: {fileID: 4773847147930470592}
   - component: {fileID: 3347569726306890378}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WoodBlock2x2x2
   m_TagString: CanBePickedUp
   m_Icon: {fileID: 0}
@@ -183,6 +183,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c684779f28f2564ea0f801e2db9fe9b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 0c684779f28f2564ea0f801e2db9fe9b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

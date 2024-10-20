@@ -65,7 +65,11 @@ public class PickupController : MonoBehaviour
                 {
                     newPosition = new Vector3(hit.point.x, hit.point.y + 3, hit.point.z);
                 }
-                carriedGameObject.transform.position = newPosition;
+
+                if (hit.transform.gameObject.layer == 6) {
+                    carriedGameObject.transform.position = newPosition;
+                }
+                
             }
 
             if (Input.GetKeyDown(KeyCode.Period))
