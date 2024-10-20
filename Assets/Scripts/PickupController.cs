@@ -10,7 +10,7 @@ public class PickupController : MonoBehaviour
     private bool hasObject = false;
     private CanBePickedUp carriedGameObject = null;
 
-    private AudioSource speaker;
+    public AudioSource speaker;
     public AudioClip[] rotateSFX;
     public AudioClip[] pickupSFX;
 
