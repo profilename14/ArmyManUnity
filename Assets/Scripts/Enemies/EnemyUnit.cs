@@ -1,10 +1,23 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyUnit : MonoBehaviour
 {
+    public MeshRenderer dudePaper;
+    public Material[] dudeMaterials;
+    
+    [Header("VFX")]
+    public ParticleSystem deathVFX;
+
     [SerializeField] private int health = 3;
+
+    private void Awake()
+    {
+        Material randomMaterial = dudeMaterials[Random.Range(0, dudeMaterials.Length)];
+        dudePaper.material = randomMaterial;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,9 +33,14 @@ public class EnemyUnit : MonoBehaviour
 
         if (health <= 0)
         {
-            // Die
-            Destroy(gameObject);
+            Death();
         }
     }
 
+    private void Death()
+    {
+        Instantiate(deathVFX, transform.position, transform.rotation);
+
+        Destroy(gameObject);
+    }
 }
