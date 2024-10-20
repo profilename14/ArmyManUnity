@@ -11,9 +11,11 @@ public class WaveManager : MonoBehaviour
     public List<Transform> spawnPoints;
 
     private AudioManager theAM;
+    private AudioSource speaker;
 
     public AudioClip waveMusic;
     public AudioClip buildMusic;
+    public AudioClip waveStart;
 
     private float spawnTimer = 0;
     private int numEnemiesSpawnedThisWave = 0;
@@ -25,7 +27,7 @@ public class WaveManager : MonoBehaviour
     {
         theAM = FindObjectOfType<AudioManager>();
         pickupController.canCarryObjects = true;
-
+        speaker = GetComponent<AudioSource>();
 
     }
 
@@ -73,6 +75,8 @@ public class WaveManager : MonoBehaviour
 
     void beginNextWave()
     {
+        speaker.PlayOneShot(waveStart);
+
         //play the wave music
         if (waveMusic != null)
         {
