@@ -3569,11 +3569,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ec8a98b2bdac84881dedb5149fdb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speaker: {fileID: 1725077491}
   rotateSFX:
-  - {fileID: 8300000, guid: e1347bb0015291c47afc34098d899fb6, type: 3}
-  pickupSFX:
   - {fileID: 8300000, guid: 41828b67d145e3241b138a3bd24035c8, type: 3}
   - {fileID: 8300000, guid: ebf8a07eaa69ffa43af5d5083ff7837a, type: 3}
+  pickupSFX:
+  - {fileID: 8300000, guid: e1347bb0015291c47afc34098d899fb6, type: 3}
   canCarryObjects: 1
 --- !u!4 &1725077490
 Transform:
