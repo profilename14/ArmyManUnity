@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWave
+public class EnemyWave : MonoBehaviour
 {
     public GameObject enemyType; // This prefab will be spawned as the enemy type of this wave.
     // public float waveDelay = 10; // How many seconds after the last wave this should start.
