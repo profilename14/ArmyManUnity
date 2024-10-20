@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CanBePickedUp
   - Monster
+  - Unit
   layers:
   - Default
   - TransparentFX

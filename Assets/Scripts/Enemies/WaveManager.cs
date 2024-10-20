@@ -32,14 +32,7 @@ public class WaveManager : MonoBehaviour
             pickupController.canCarryObjects = false;
             beginNextWave();
         }
-        
-        if (!isBuildMode && enemiesRemaining.Count < 1) {
-            waves.RemoveAt(0);
-            isBuildMode = true;
-            pickupController.canCarryObjects = true;
-
-        }
-
+       
         if (!isBuildMode)
         {
             if (spawnTimer > 0)
@@ -60,6 +53,14 @@ public class WaveManager : MonoBehaviour
                     numEnemiesSpawnedThisWave++;
                 }
             }
+        }
+        
+        if (!isBuildMode && enemiesRemaining.Count < 1)
+        {
+            waves.RemoveAt(0);
+            isBuildMode = true;
+            pickupController.canCarryObjects = true;
+
         }
     }
 
