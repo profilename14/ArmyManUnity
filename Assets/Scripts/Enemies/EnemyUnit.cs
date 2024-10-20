@@ -12,6 +12,9 @@ public class EnemyUnit : MonoBehaviour
     [Header("VFX")]
     public ParticleSystem deathVFX;
 
+    // Attacking
+    private float attackCooldown;
+
     // Moving
     private AIDestinationSetter destinationSetter;
     public Transform walkPoint;
@@ -19,7 +22,7 @@ public class EnemyUnit : MonoBehaviour
 
     // States
     public GameObject[] unitObjects;
-    public LayerMask soldierLayer;
+    public LayerMask unitLayer;
 
     public float sightRange, attackRange;
     public bool unitInSightRange, unitInAttackRange;
@@ -31,45 +34,57 @@ public class EnemyUnit : MonoBehaviour
         destinationSetter = GetComponent<AIDestinationSetter>();
         Material randomMaterial = dudeMaterials[Random.Range(0, dudeMaterials.Length)];
         dudePaper.material = randomMaterial;
+        attackCooldown = 0;
     }
 
     private void Update()
     {
+        if (attackCooldown > 0) { attackCooldown -= Time.deltaTime; }
+
         // Check if any units are in sight range
-        unitInSightRange = Physics.CheckSphere(transform.position, sightRange, soldierLayer);
-        unitInAttackRange = Physics.CheckSphere(transform.position, attackRange, soldierLayer);
+        unitInSightRange = Physics.CheckSphere(transform.position, sightRange, unitLayer);
+        unitInAttackRange = Physics.CheckSphere(transform.position, attackRange, unitLayer);
 
         // If no units are in range, move towards center and search for units
         if (!unitInSightRange && !unitInAttackRange) { ApproachCenter(); }
 
-        if (unitInSightRange && !unitInAttackRange) { ChaseUnit(); }
+        else if (unitInSightRange && !unitInAttackRange) { ChaseUnit(); }
 
-        if (unitInAttackRange) { AttackUnit(); }
-
-        walkPoint = FindNearestUnit();
-        destinationSetter.target = walkPoint;
-    }
+        else if (unitInAttackRange) { AttackUnit(); }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Unit"))
-        {
-            Debug.Log("Om Nom Nom!");
-            other.gameObject.GetComponent<ArmyGuyUnit>().TakeDamage();
-        }
     }
 
     private void ApproachCenter()
     {
-
+        // Move To Center
+        walkPoint = GameObject.Find("MapCenter").transform;
+        destinationSetter.target = walkPoint;
     }
 
-    private Transform FindNearestUnit()
+    private void ChaseUnit()
+    {
+        walkPoint = FindNearestUnit().transform;
+        destinationSetter.target = walkPoint;
+    }
+
+    private void AttackUnit()
+    {
+        if (attackCooldown <= 0)
+        {
+            GameObject attackTarget = FindNearestUnit();
+            Debug.Log("Om Nom Nom!");
+            attackTarget.gameObject.GetComponent<ArmyGuyUnit>().TakeDamage();
+            // Play Attack SFX and possibly VFX
+            attackCooldown = 3f;
+        }
+    }
+
+    private GameObject FindNearestUnit()
     {
         GameObject[] unitObjects = GameObject.FindGameObjectsWithTag("Unit");
 
-        Transform bestTarget = null;
+        GameObject bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
         for (int i = 0; i < unitObjects.Length; i++)
@@ -79,24 +94,12 @@ public class EnemyUnit : MonoBehaviour
             if (dSqrToTarget < closestDistanceSqr)
             {
                 closestDistanceSqr = dSqrToTarget;
-                bestTarget = unitObjects[i].transform;
+                bestTarget = unitObjects[i];
             }
         }
 
         return bestTarget;
     }
-
-
-    private void ChaseUnit()
-    {
-
-    }
-
-    private void AttackUnit()
-    {
-
-    }
-
 
     public void TakeDamage(int amount = 1)
     {
