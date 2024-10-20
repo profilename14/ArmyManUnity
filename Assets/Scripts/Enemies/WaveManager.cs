@@ -66,6 +66,10 @@ public class WaveManager : MonoBehaviour
         
         if (!isBuildMode && enemiesRemaining.Count < 1)
         {
+            foreach (GameObject reward in waves[0].rewards)
+            {
+                reward.SetActive(true);
+            }
             waves.RemoveAt(0);
             isBuildMode = true;
             pickupController.canCarryObjects = true;

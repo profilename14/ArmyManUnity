@@ -69,8 +69,20 @@ public class ArmyGuyUnit : MonoBehaviour
             {
                 // An enemy is in your radius
                 //e.GetHurt(); // Hit the enemy for example
-                target = e.transform;
+                if (target == null) {
+                    target = e.transform;
+                } else if (Vector3.Distance(e.transform.position, transform.position) < Vector3.Distance(target.position, transform.position))
+                {
+                    target = e.transform;
+                }
+                
             }
+        }
+
+        if (target == null)
+        {
+            reloadTick += Time.deltaTime;
+            return;
         }
         // Turn Towards Target
         // Determine which direction to rotate towards

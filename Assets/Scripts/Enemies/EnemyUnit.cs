@@ -84,7 +84,7 @@ public class EnemyUnit : MonoBehaviour
 
     private GameObject FindNearestUnit()
     {
-        GameObject[] unitObjects = GameObject.FindGameObjectsWithTag("Unit");
+        GameObject[] unitObjects = GameObject.FindGameObjectsWithTag("CanBePickedUp");
 
         GameObject bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
@@ -96,7 +96,10 @@ public class EnemyUnit : MonoBehaviour
             if (dSqrToTarget < closestDistanceSqr)
             {
                 closestDistanceSqr = dSqrToTarget;
-                bestTarget = unitObjects[i];
+                if (unitObjects[i].GetComponent<ArmyGuyUnit>() != null)
+                {
+                    bestTarget = unitObjects[i];
+                }
             }
         }
 
