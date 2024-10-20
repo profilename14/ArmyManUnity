@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PickupController : MonoBehaviour
 {
@@ -9,12 +10,25 @@ public class PickupController : MonoBehaviour
     private CanBePickedUp carriedGameObject = null;
 
     public bool canCarryObjects = true;
+    private bool movementLock = false;
     void Awake()
     {
         m_Camera = Camera.main;
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            if (movementLock)
+            {
+                movementLock = false;
+            }
+            else
+            {
+                movementLock = true;
+            }
+        }
+
         if (Input.GetMouseButtonDown(0) && !hasObject && canCarryObjects)
         {
             Vector3 mousePosition = Input.mousePosition;
@@ -41,7 +55,7 @@ public class PickupController : MonoBehaviour
             {
                 Vector3 newPosition;
 
-                if (Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl))
+                if (movementLock)
                 {
                     float newX = Mathf.Round(hit.point.x * 1.0f) * 1f;
                     float newZ = Mathf.Round(hit.point.z * 1.0f) * 1f;
@@ -56,11 +70,11 @@ public class PickupController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Period))
             {
-                carriedGameObject.transform.Rotate(0, 45, 0);
+                rotateObject(45);
             }
             else if (Input.GetKeyDown(KeyCode.Comma))
             {
-                carriedGameObject.transform.Rotate(0, -45, 0);
+                rotateObject(-45);
             }
 
             if ( (Input.GetMouseButtonDown(0) || !canCarryObjects) && hasObject)
@@ -70,5 +84,33 @@ public class PickupController : MonoBehaviour
                 carriedGameObject = null;
             }
         }
+    }
+
+    private void rotateObject(float degrees)
+    {
+        if (carriedGameObject.rotateAboutSlopeAxis)
+        {
+            if (carriedGameObject.transform.eulerAngles.z % 45 > 1 && carriedGameObject.transform.eulerAngles.z % 45 < 44)
+            {
+                carriedGameObject.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
+            }
+            else
+            {
+                carriedGameObject.transform.Rotate(0, 0, degrees);
+            }
+        }
+        else
+        {
+            if (carriedGameObject.transform.eulerAngles.y % 45 > 1 && carriedGameObject.transform.eulerAngles.y % 45 < 44)
+            {
+                carriedGameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+            else
+            {
+                carriedGameObject.transform.Rotate(0, degrees, 0);
+            }
+        }
+
+
     }
 }
