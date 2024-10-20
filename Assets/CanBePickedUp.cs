@@ -10,6 +10,8 @@ public class CanBePickedUp : MonoBehaviour
     private Rigidbody thisRigidbody;
     private Collider thisCollider;
 
+    [SerializeField] public bool rotateAboutSlopeAxis = false;
+
     [SerializeField] private List<Collider> otherColliders;
 
     void Awake()
