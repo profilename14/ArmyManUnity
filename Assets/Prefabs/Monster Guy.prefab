@@ -142,8 +142,14 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 0d56d2f9bb0b0a945830c50fcf550083, type: 2}
   deathVFX: {fileID: 4756450857057238894, guid: 0cf8377341db75146a951540d0ac3f80,
     type: 3}
+  groanSFX:
+  - {fileID: 8300000, guid: 20f97a247f58eb64c854c06d98cad5ff, type: 3}
+  - {fileID: 8300000, guid: 1b736ab17813ee44e8936a92600267b1, type: 3}
+  - {fileID: 8300000, guid: 88531abe06dbb864e88a5d3584b37cde, type: 3}
+  - {fileID: 8300000, guid: 1178fa9e02db52d43a14865a04800064, type: 3}
   walkPoint: {fileID: 0}
   walkPointSet: 0
+  health: 3
   unitObjects: []
   unitLayer:
     serializedVersion: 2
@@ -152,7 +158,6 @@ MonoBehaviour:
   attackRange: 1.5
   unitInSightRange: 0
   unitInAttackRange: 0
-  health: 3
 --- !u!114 &7684636353415442266
 MonoBehaviour:
   m_ObjectHideFlags: 0

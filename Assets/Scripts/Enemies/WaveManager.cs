@@ -19,14 +19,12 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         pickupController.canCarryObjects = true;
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Semicolon) && isBuildMode)
+        if (Input.GetKeyDown(KeyCode.Space) && isBuildMode)
         {
             isBuildMode = false;
             pickupController.canCarryObjects = false;
@@ -48,6 +46,10 @@ public class WaveManager : MonoBehaviour
                     int spawnIndex = Random.Range(0, spawnPoints.Count);
                     Transform SpawnTransform = spawnPoints[spawnIndex];
                     Vector3 SpawnPosition = SpawnTransform.position;
+                    float rndX = Random.Range(-2, 2);
+                    float rndZ = Random.Range(-2, 2);  
+                    SpawnPosition.x += rndX;
+                    SpawnPosition.z += rndZ;
 
                     GameObject newEnemy = Instantiate(waves[0].enemyType, SpawnPosition, Quaternion.identity);
                     enemiesRemaining.Add(newEnemy);

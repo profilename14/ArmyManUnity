@@ -6,19 +6,29 @@ using UnityEngine;
 
 public class EnemyUnit : MonoBehaviour
 {
+    [Header("Visuals")]
     public MeshRenderer dudePaper;
     public Material[] dudeMaterials;
     
     [Header("VFX")]
     public ParticleSystem deathVFX;
 
-    // Attacking
-    private float attackCooldown;
+    [Header("SFX")]
+    public AudioClip[] groanSFX;
+    private AudioSource speaker;
+    
+
+
 
     // Moving
+    [Header("Movement")]
     private AIDestinationSetter destinationSetter;
     public Transform walkPoint;
     public bool walkPointSet;
+
+    // Stats
+    [Header("Stats")]
+    [SerializeField] private int health = 3;
 
     // States
     public GameObject[] unitObjects;
@@ -27,11 +37,13 @@ public class EnemyUnit : MonoBehaviour
     public float sightRange, attackRange;
     public bool unitInSightRange, unitInAttackRange;
 
-    [SerializeField] private int health = 3;
+    // Attacking
+    private float attackCooldown;
 
     private void Awake()
     {
         destinationSetter = GetComponent<AIDestinationSetter>();
+        speaker = GetComponent<AudioSource>();
         Material randomMaterial = dudeMaterials[Random.Range(0, dudeMaterials.Length)];
         dudePaper.material = randomMaterial;
         attackCooldown = 0;
@@ -72,6 +84,9 @@ public class EnemyUnit : MonoBehaviour
     {
         if (attackCooldown <= 0)
         {
+            AudioClip randomClip = groanSFX[Random.Range(0, groanSFX.Length)];
+            speaker.PlayOneShot(randomClip);
+
             GameObject attackTarget = FindNearestUnit();
             Debug.Log("Om Nom Nom!");
             attackTarget.gameObject.GetComponent<ArmyGuyUnit>().TakeDamage();

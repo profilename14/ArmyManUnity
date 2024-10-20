@@ -8,7 +8,7 @@ public class DeathEffectScript : MonoBehaviour
     public float time = 5;
 
     [Header("Sounds")]
-    public AudioSource speaker;
+    private AudioSource speaker;
     public AudioClip[] deathSFX;
 
     void Start()
