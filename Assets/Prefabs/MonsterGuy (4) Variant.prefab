@@ -341,6 +341,37 @@ PrefabInstance:
       propertyPath: pickNextWaypointDist
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3034588350185859483, guid: 29da890ed9604ae479a1c7c76d9ade62,
+        type: 3}
+      propertyPath: deathVFX
+      value: 
+      objectReference: {fileID: 4756450857057238894, guid: 0cf8377341db75146a951540d0ac3f80,
+        type: 3}
+    - target: {fileID: 3034588350185859483, guid: 29da890ed9604ae479a1c7c76d9ade62,
+        type: 3}
+      propertyPath: dudePaper
+      value: 
+      objectReference: {fileID: 1587961124122816170}
+    - target: {fileID: 3034588350185859483, guid: 29da890ed9604ae479a1c7c76d9ade62,
+        type: 3}
+      propertyPath: dudeMaterials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034588350185859483, guid: 29da890ed9604ae479a1c7c76d9ade62,
+        type: 3}
+      propertyPath: dudeMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14de726cf3e37274e84215e8c34decf6, type: 2}
+    - target: {fileID: 3034588350185859483, guid: 29da890ed9604ae479a1c7c76d9ade62,
+        type: 3}
+      propertyPath: dudeMaterials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d0cc50281a3f5fa45a8e937b23e1c3ff, type: 2}
+    - target: {fileID: 3034588350185859483, guid: 29da890ed9604ae479a1c7c76d9ade62,
+        type: 3}
+      propertyPath: dudeMaterials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d56d2f9bb0b0a945830c50fcf550083, type: 2}
     - target: {fileID: 3046836207060397938, guid: 29da890ed9604ae479a1c7c76d9ade62,
         type: 3}
       propertyPath: m_Enabled

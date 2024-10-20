@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour
 
     public List<EnemyWave> waves;
 
-    public List<Vector3> spawnPoints;
+    public List<Transform> spawnPoints;
 
     private float spawnTimer = 0;
     private int numEnemiesSpawnedThisWave = 0;
@@ -46,7 +46,8 @@ public class WaveManager : MonoBehaviour
                     spawnTimer = waves[0].spawnCooldown;
 
                     int spawnIndex = Random.Range(0, spawnPoints.Count);
-                    Vector3 SpawnPosition = spawnPoints[spawnIndex];
+                    Transform SpawnTransform = spawnPoints[spawnIndex];
+                    Vector3 SpawnPosition = SpawnTransform.position;
 
                     GameObject newEnemy = Instantiate(waves[0].enemyType, SpawnPosition, Quaternion.identity);
                     enemiesRemaining.Add(newEnemy);
