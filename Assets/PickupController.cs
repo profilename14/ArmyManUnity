@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PickupController : MonoBehaviour
 {
-    Camera m_Camera;
-    bool hasObject = false;
-    CanBePickedUp carriedGameObject = null;
+    private Camera m_Camera;
+    private bool hasObject = false;
+    private CanBePickedUp carriedGameObject = null;
+
+    public bool canCarryObjects = true;
     void Awake()
     {
         m_Camera = Camera.main;
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !hasObject)
+        if (Input.GetMouseButtonDown(0) && !hasObject && canCarryObjects)
         {
             Vector3 mousePosition = Input.mousePosition;
             Ray ray = m_Camera.ScreenPointToRay(mousePosition);
@@ -21,9 +23,10 @@ public class PickupController : MonoBehaviour
             {
                 print(hit);
                 GameObject hitGameObject = hit.transform.gameObject;
-                if (hitGameObject.tag == "CanBePickedUp" && !hasObject)
+                CanBePickedUp hitCarriable = hitGameObject.GetComponent<CanBePickedUp>();
+                if (hitCarriable != null && !hasObject)
                 {
-                    carriedGameObject = hitGameObject.GetComponent<CanBePickedUp>();
+                    carriedGameObject = hitCarriable;
                     hasObject = true;
                     carriedGameObject.pickup(); // Disables stuff like hitboxes and rotation
                     print("Now carrying " + hitGameObject);
@@ -60,7 +63,7 @@ public class PickupController : MonoBehaviour
                 carriedGameObject.transform.Rotate(0, -45, 0);
             }
 
-            if (Input.GetMouseButtonDown(0) && hasObject)
+            if ( (Input.GetMouseButtonDown(0) || !canCarryObjects) && hasObject)
             {
                 carriedGameObject.release();
                 hasObject = false;
