@@ -12,7 +12,7 @@ public class Pellet : MonoBehaviour
         {
             Debug.Log("Enemy Hit!");
             // Do Damage
-            other.GetComponent<EnemyScript>().TakeDamage(4);
+            other.GetComponent<EnemyUnit>().TakeDamage(4);
         }
     }
 }
