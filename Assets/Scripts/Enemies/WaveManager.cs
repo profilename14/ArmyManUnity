@@ -55,7 +55,8 @@ public class WaveManager : MonoBehaviour
                     int spawnIndex = Random.Range(0, spawnPoints.Count);
                     Vector3 SpawnPosition = spawnPoints[spawnIndex];
 
-                    Instantiate(waves[0].enemyType, SpawnPosition, Quaternion.identity);
+                    GameObject newEnemy = Instantiate(waves[0].enemyType, SpawnPosition, Quaternion.identity);
+                    enemiesRemaining.Add(newEnemy);
                     numEnemiesSpawnedThisWave++;
                 }
             }
