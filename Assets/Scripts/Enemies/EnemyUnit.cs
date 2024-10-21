@@ -98,10 +98,10 @@ public class EnemyUnit : MonoBehaviour
 
         GameObject bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
-        Vector3 currentPosition = transform.position;
+        UnityEngine.Vector3 currentPosition = transform.position;
         for (int i = 0; i < unitObjects.Length; i++)
         {
-            Vector3 directionToTarget = unitObjects[i].transform.position - currentPosition;
+            UnityEngine.Vector3 directionToTarget = unitObjects[i].transform.position - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
             if (dSqrToTarget < closestDistanceSqr)
             {
