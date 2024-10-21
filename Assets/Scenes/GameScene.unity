@@ -6342,7 +6342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &813431886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9141,6 +9141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1339874740}
   - component: {fileID: 1339874739}
+  - component: {fileID: 1339874741}
   m_Layer: 0
   m_Name: Wave Manager
   m_TagString: Untagged
@@ -11814,7 +11815,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.6
   m_Pitch: 0.7
   Loop: 0
   Mute: 0
@@ -13758,7 +13759,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6003ea37a46975748a44c7b72f73aa91, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -15565,7 +15566,7 @@ GameObject:
   - component: {fileID: 4325538982715475385}
   m_Layer: 7
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

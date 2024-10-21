@@ -1,7 +1,9 @@
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyUnit : MonoBehaviour
@@ -68,6 +70,14 @@ public class EnemyUnit : MonoBehaviour
     {
         walkPoint = FindNearestUnit().transform;
         destinationSetter.target = walkPoint;
+
+        if (Random.Range(0, 100) == 1)
+        {
+            if (transform.position.y < walkPoint.position.y)
+            {
+                transform.position += new UnityEngine.Vector3(0, 0.5f, 0);
+            }
+        }
     }
 
     private void AttackUnit()
