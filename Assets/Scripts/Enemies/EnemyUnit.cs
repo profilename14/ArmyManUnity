@@ -24,7 +24,6 @@ public class EnemyUnit : MonoBehaviour
 
     // States
     public WaveManager waveManager;
-    public GameObject[] unitObjects;
     public LayerMask unitLayer;
 
     public float sightRange, attackRange;
@@ -70,14 +69,6 @@ public class EnemyUnit : MonoBehaviour
     {
         walkPoint = FindNearestUnit().transform;
         destinationSetter.target = walkPoint;
-
-        if (Random.Range(0, 100) == 1)
-        {
-            if (transform.position.y < walkPoint.position.y)
-            {
-                transform.position += new UnityEngine.Vector3(0, 0.5f, 0);
-            }
-        }
     }
 
     private void AttackUnit()
@@ -94,7 +85,7 @@ public class EnemyUnit : MonoBehaviour
 
     private GameObject FindNearestUnit()
     {
-        GameObject[] unitObjects = GameObject.FindGameObjectsWithTag("CanBePickedUp");
+        GameObject[] unitObjects = GameObject.FindGameObjectsWithTag("Unit");
 
         GameObject bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
@@ -106,10 +97,8 @@ public class EnemyUnit : MonoBehaviour
             if (dSqrToTarget < closestDistanceSqr)
             {
                 closestDistanceSqr = dSqrToTarget;
-                if (unitObjects[i].GetComponent<ArmyGuyUnit>() != null)
-                {
-                    bestTarget = unitObjects[i];
-                }
+
+                bestTarget = unitObjects[i];
             }
         }
 
